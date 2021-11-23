@@ -1,6 +1,6 @@
 import os
 
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, setup
 
 
 # include the non python files
@@ -13,6 +13,19 @@ def package_files(directory, strip_leading):
     return paths
 
 
+def get_version():
+    """Get version."""
+    with open(os.path.join("donkeycar", "__init__.py")) as f:
+        content = f.readlines()
+
+    for line in content:
+        if line.startswith("__version__ ="):
+            # dirty, remove trailing and leading chars
+            return line.split(" = ")[1][1:-2]
+
+    raise ValueError("No package version found")
+
+
 car_templates = ['templates/*']
 web_controller_html = package_files('donkeycar/parts/controllers/templates',
                                     'donkeycar/')
@@ -23,9 +36,11 @@ print('extra_files', extra_files)
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(name='donkeycar',
-      version="4.3.0",
+VERSION = get_version()
+setup(name='aicoe-donkeycar',
+      version=VERSION,
       long_description=long_description,
+      long_description_content_type="text/markdown",
       description='Self driving library for python.',
       url='https://github.com/autorope/donkeycar',
       author='Will Roscoe, Adam Conway, Tawn Kramer',
@@ -107,5 +122,7 @@ setup(name='donkeycar',
           'Programming Language :: Python :: 3.7',
       ],
       keywords='selfdriving cars donkeycar diyrobocars',
-      packages=find_packages(exclude=(['tests', 'docs', 'site', 'env'])),
-    )
+      packages=find_namespace_packages(
+          include=['donkeycar*'],
+          exclude=(['tests', 'docs', 'site', 'env']))
+      )
