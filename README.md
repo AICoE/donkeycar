@@ -9,12 +9,12 @@ Donkeycar is minimalist and modular self driving library for Python. It is
 developed for hobbyists and students with a focus on allowing fast experimentation and easy
 community contributions.
 
+NOTE: this package is a non-official build by the AICoE. Please check the upstream project links for official information.
+
 #### Quick Links
 * [Donkeycar Updates & Examples](http://donkeycar.com)
 * [Build instructions and Software documentation](http://docs.donkeycar.com)
 * [Discord / Chat](https://discord.gg/PN6kFeA)
-
-![donkeycar](./docs/assets/build_hardware/donkey2.png)
 
 #### Use Donkey if you want to:
 * Make an RC car drive its self.

@@ -3,7 +3,7 @@ from pyfiglet import Figlet
 import logging
 from pkg_resources import get_distribution
 
-__version__ = get_distribution('donkeycar').version
+__version__ = "4.3.0"
 
 logging.basicConfig(level=logging.INFO)
 f = Figlet(font='speed')
